@@ -15,7 +15,7 @@ Los querys son mejor en cloud firestore.
 ### Habilitar que todo el mundo pueda escribir y editar. 
 1. Vas a reglas y cambiar el if por true.
 
-## Comenzando
+# Comenzando || Codigo básico
 1. Ajustes, configuracion de proyecto, web.
 2. Me da la configuracion necesaria para la aplicacion.
 3. Usar npm install firebase
