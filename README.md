@@ -36,15 +36,21 @@ export default firebase.firestore();
 En firestore no hay sintaxis en cuanto a la creacion de tablas.
 En sql es un insert, acá lo unico que hay que hacer es la referencia a la base de datos.
 
+```
 db.collection('usuarios')
     .add( usuario )
+```
 
-y paso el objeto usuario, simple iteral sin funciones.
-regresa una promesa, .then ( data => { clg (data ) })
+Y paso el objeto usuario, simple iteral sin funciones. Regresa una promesa: 
 
-### Actualizar data
+```
+.then ( data => { clg (data ) })
+```
+## Actualizar data
 
-puedo hacer referencia a la tabla usuarios.
+puedo hacer referencia a la tabla usuarios:
+
+```
 const usarios ref = db.collection('usuarios')
 
 usuarioRef
@@ -52,23 +58,27 @@ usuarioRef
     .update({
         activo: true;
     })
-
-el .set borra todo y agrega lo que mandas.
-
-
-### Borrar data
+```
 
 
+El .set borra todo y agrega lo que mandas.
 
+
+## Borrar data
+
+
+```
 usuarioRef
     .doc('idusuario')
     .delete()
+```
 
-no devuelve nada
+No devuelve una respuesta si fue exitoso
 
 
-### Select
+## Select
 
+```
 usuariosRef
     .onSnapshot( snap => {
         
@@ -91,50 +101,56 @@ usuariosRef
         
         console.log(usuarios);
     })
-
+```
 
 Si quiero no estar dependiente del obs
 
+```
 usuarioRef
     .get().then( snap => retornaDocumentos(snap) )
+```
 
+## Select con condiciones o where
 
-### Select con condiciones o where
-
+```
 usuariosRef.where('activo','==',false).get().then( retornaDocumentos );
 usuariosRef.where('salario','>=',1000).get().then( retornaDocumentos );
-
-
+```
+No funciona con dos indices. Hay que crearlo
+```
 usuariosRef.where('salario','>=',1000)
             .where('salario','<',1200)
             .get().then( retornaDocumentos );
+```
 
 
-No funciona con dos indices. Hay que crearlo
 
 Forma lenta: ir a firebase, => indices, crear un indice, nombre de coleccion y los campos.
 Forma rapida: fijarte el error por consola ir al link y crearlo.
 
-
+```
 usuariosRef.where('salario','>=',1000)
             .where('activo','==',true)
             .get().then( retornaDocumentos );
+```
 
 
-
-### OrderBy 
+## OrderBy 
 
 No muestra los registros que no existe, si no tiene salario y ordeno por dicho campo no muestra ese usuario.
 
+```
 usuariosRef
     .orderBy('nombre')
     .orderBy('salario','desc')
     .get().then( retornaDocumentos );
+```
 
 Necesito que cree el indice justamente.
 
 
-### Limites
+## Limites
+```
 usuariosRef
     .limit(5).get().then( retornaDocumentos );
-
+```
