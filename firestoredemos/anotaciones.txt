@@ -28,4 +28,4 @@ db.collection('usuarios')
 y paso el objeto usuario, simple iteral sin funciones.
 regresa una promesa, .then ( data => { clg (data ) })
 
-
+dassda
