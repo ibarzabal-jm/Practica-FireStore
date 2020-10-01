@@ -13,6 +13,19 @@ Ajustes, configuracion de proyecto, web.
 me da la configuracion necesaria para la aplicacion.
 usar npm install firebase
 
+import 'firebase/firestore'
+exportar firebase.firestore();
 
+//////////////////////
+Insertar data
+/////////////////////
+En firestore no hay sintaxis en cuanto a la creacion de tablas.
+En sql es un insert, acá lo unico que hay que hacer es la referencia a la base de datos.
+
+db.collection('usuarios')
+    .add( usuario )
+
+y paso el objeto usuario, simple iteral sin funciones.
+regresa una promesa, .then ( data => { clg (data ) })
 
 
