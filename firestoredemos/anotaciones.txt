@@ -1,0 +1,105 @@
+Anotaciones
+
+Los querys son mejor en cloud firestore. => Es lo mismo que crear en mysql create database sql-demos;
+Trabaja en base a documentos, mas bien Json
+
+
+
+habilitar que todo el mundo pueda escribir y editar. 
+Vas a reglas y cambiar el if por true.
+
+Ajustes, configuracion de proyecto, web.
+
+me da la configuracion necesaria para la aplicacion.
+usar npm install firebase
+
+import 'firebase/firestore'
+exportar firebase.firestore();
+
+//////////////////////
+Insertar data
+/////////////////////
+En firestore no hay sintaxis en cuanto a la creacion de tablas.
+En sql es un insert, acá lo unico que hay que hacer es la referencia a la base de datos.
+
+db.collection('usuarios')
+    .add( usuario )
+
+y paso el objeto usuario, simple iteral sin funciones.
+regresa una promesa, .then ( data => { clg (data ) })
+
+//////////////////////
+Actualizar data
+/////////////////////
+puedo hacer referencia a la tabla usuarios.
+const usarios ref = db.collection('usuarios')
+
+usuarioRef
+    .doc('idusuario')
+    .update({
+        activo: true;
+    })
+
+el .set borra todo y agrega lo que mandas.
+
+
+//////////////////////
+Borrar data
+/////////////////////
+
+
+usuarioRef
+    .doc('idusuario')
+    .delete()
+
+no devuelve nada
+
+
+//////////////////////
+Select
+/////////////////////
+usuariosRef
+    .onSnapshot( snap => {
+        
+        snap.forEach( snaphijo =>{
+            console.log(snaphijo.data(), snaphijo.id )
+        })   
+    })
+
+usuariosRef
+    .onSnapshot( snap => {
+
+        const usuarios: any[] = [];
+
+        snap.forEach( snapHijo => {
+            usuarios.push({
+                id: snapHijo.id,
+                ...snapHijo.data()
+             })
+        })   
+        
+        console.log(usuarios);
+    })
+
+
+Si quiero no estar dependiente del obs
+
+usuarioRef
+    .get().then( snap => retornaDocumentos(snap) )
+
+
+//////////////////////
+Select con condiciones o where
+/////////////////////
+usuariosRef.where('activo','==',false).get().then( retornaDocumentos );
+usuariosRef.where('salario','>=',1000).get().then( retornaDocumentos );
+
+
+usuariosRef.where('salario','>=',1000)
+            .where('salario','<',1200)
+            .get().then( retornaDocumentos );
+
+
+
+
+
