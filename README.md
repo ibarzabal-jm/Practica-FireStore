@@ -2,21 +2,23 @@
  Son pruebas que hago en Firebase
 
 
-## Anotaciones
+### Anotaciones
 
 Los querys son mejor en cloud firestore.  
 
-* Cuando lo creo Es lo mismo que crear en mysql create database sql-demos;
+* Cuando lo creo es lo mismo que crear en mysql create database sql-demos.
 * Las tablas se llaman colecciones.
-* Trabaja en base a documentos, mas bien Json
+* Trabaja en base a documentos, mas bien Json.
 
 
 
-# Habilitar que todo el mundo pueda escribir y editar. 
+### Habilitar que todo el mundo pueda escribir y editar. 
 1. Vas a reglas y cambiar el if por true.
-2. Ajustes, configuracion de proyecto, web.
-3. Me da la configuracion necesaria para la aplicacion.
-4. Usar npm install firebase
+
+## Comenzando
+1. Ajustes, configuracion de proyecto, web.
+2. Me da la configuracion necesaria para la aplicacion.
+3. Usar npm install firebase
 
 ```
 import firebase from  'firebase/app'
@@ -29,7 +31,7 @@ export default firebase.firestore();
 
 
 
-# # Insertar data
+## Insertar data
 
 En firestore no hay sintaxis en cuanto a la creacion de tablas.
 En sql es un insert, acá lo unico que hay que hacer es la referencia a la base de datos.
@@ -40,7 +42,7 @@ db.collection('usuarios')
 y paso el objeto usuario, simple iteral sin funciones.
 regresa una promesa, .then ( data => { clg (data ) })
 
-# Actualizar data
+### Actualizar data
 
 puedo hacer referencia a la tabla usuarios.
 const usarios ref = db.collection('usuarios')
@@ -54,7 +56,7 @@ usuarioRef
 el .set borra todo y agrega lo que mandas.
 
 
-# Borrar data
+### Borrar data
 
 
 
@@ -65,7 +67,7 @@ usuarioRef
 no devuelve nada
 
 
-# Select
+### Select
 
 usuariosRef
     .onSnapshot( snap => {
@@ -97,7 +99,7 @@ usuarioRef
     .get().then( snap => retornaDocumentos(snap) )
 
 
-# Select con condiciones o where
+### Select con condiciones o where
 
 usuariosRef.where('activo','==',false).get().then( retornaDocumentos );
 usuariosRef.where('salario','>=',1000).get().then( retornaDocumentos );
@@ -120,7 +122,7 @@ usuariosRef.where('salario','>=',1000)
 
 
 
-# OrderBy 
+### OrderBy 
 
 No muestra los registros que no existe, si no tiene salario y ordeno por dicho campo no muestra ese usuario.
 
@@ -132,7 +134,7 @@ usuariosRef
 Necesito que cree el indice justamente.
 
 
-# Limites
+### Limites
 usuariosRef
     .limit(5).get().then( retornaDocumentos );
 
