@@ -131,3 +131,8 @@ usuariosRef
 
 Necesito que cree el indice justamente.
 
+
+# Limites
+usuariosRef
+    .limit(5).get().then( retornaDocumentos );
+
