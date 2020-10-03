@@ -56,12 +56,21 @@ const usarios ref = db.collection('usuarios')
 usuarioRef
     .doc('idusuario')
     .update({
-        activo: true;
+        activo: true,
     })
 ```
 
 
 El .set borra todo y agrega lo que mandas.
+
+```
+usuarioRef
+    .doc('idusuario')
+    .set({
+        edad: 50,
+        nombre: roberto
+       })
+```
 
 
 ## Borrar data
@@ -77,6 +86,9 @@ No devuelve una respuesta si fue exitoso
 
 
 ## Select
+
+
+Siempre que haya un cambio en la base de datos:
 
 ```
 usuariosRef
@@ -102,6 +114,31 @@ usuariosRef
         console.log(usuarios);
     })
 ```
+
+
+- Creacion de una funcion que me devuelve los documentos
+```
+import firebase from 'firebase';
+
+export const retornaDocumentos = ( snapshot: firebase.firestore.QuerySnapshot ) => {
+
+    const documentos: any[] = [];
+
+    snapshot.forEach( snapHijo => {
+        documentos.push({
+            id: snapHijo.id,
+            ...snapHijo.data()
+         })
+    })   
+
+    console.log(documentos);
+
+    return documentos;
+
+}
+```
+
+
 
 Si quiero no estar dependiente del obs
 
