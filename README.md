@@ -1,5 +1,5 @@
 # Practica FireStore
- Son pruebas que hago en Firebase
+ Basicamente son pruebas y como utilizar Firebase. 
 
 
 ### Anotaciones
